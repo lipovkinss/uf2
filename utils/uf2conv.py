@@ -199,8 +199,10 @@ def convert_from_hex_to_uf2(buf):
     return resfile
 
 def to_str(b):
-    return b.decode("utf-8")
-
+    try:
+        return b.decode("utf-8")
+    except UnicodeDecodeError:
+        return b.decode("cp1251")
 def get_drives():
     drives = []
     if sys.platform == "win32":
